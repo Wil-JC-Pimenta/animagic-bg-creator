@@ -1,3 +1,4 @@
+
 export type AnimationType = 'gradient' | 'particles' | 'waves' | 'parallax' | 'network' | 'blobs' | 'glitch' | 'stars' | 'noise' | 'colorTransition';
 
 export interface GradientState {
@@ -135,6 +136,9 @@ export interface AnimationState extends
   setColorTransitionColors: (colors: string[]) => void;
   setColorTransitionSpeed: (speed: number) => void;
   setColorTransitionBlendMode: (mode: string) => void;
+  
+  // Function to manually generate animation code
+  generateAnimationCode: () => void;
 }
 
 export interface GradientSettings {
