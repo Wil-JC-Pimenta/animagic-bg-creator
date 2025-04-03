@@ -52,12 +52,6 @@ const PreviewSection: React.FC<PreviewSectionProps> = (props) => {
   return (
     <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden mb-8 border border-border">
       <AnimationRenderer {...props} />
-      
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <p className="text-white/70 text-sm bg-black/30 px-3 py-1 rounded-full">
-          Preview (move mouse for parallax/network effect)
-        </p>
-      </div>
     </div>
   );
 };
