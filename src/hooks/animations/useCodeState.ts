@@ -10,6 +10,9 @@ export const useCodeState = (): CodeState => {
   return {
     htmlCode,
     cssCode,
-    jsCode
+    jsCode,
+    setHtmlCode,
+    setCssCode,
+    setJsCode
   };
 };

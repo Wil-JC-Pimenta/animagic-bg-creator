@@ -34,6 +34,33 @@ export const useAnimationState = (): AnimationState => {
   const colorTransitionState = useColorTransitionState();
   const codeState = useCodeState();
   
+  // Função para forçar a geração de código
+  const generateAnimationCode = () => {
+    // Combine all states into a single object to be used by createAnimationSettings
+    const combinedState = {
+      ...gradientState,
+      ...particlesState,
+      ...waveState,
+      ...parallaxState,
+      ...networkState,
+      ...blobState,
+      ...glitchState,
+      ...starsState,
+      ...noiseState,
+      ...colorTransitionState
+    };
+    
+    const animationSettings = createAnimationSettings(animationType, combinedState);
+    const { html, css, js } = generateCode(animationSettings);
+    
+    console.log("Código gerado manualmente:", { html, css, js });
+    
+    // Set code values using the setters
+    if (codeState.setHtmlCode) codeState.setHtmlCode(html);
+    if (codeState.setCssCode) codeState.setCssCode(css);
+    if (codeState.setJsCode) codeState.setJsCode(js);
+  };
+  
   // Update code when animation settings change
   useEffect(() => {
     console.log("Atualizando código para animação:", animationType);
@@ -55,14 +82,12 @@ export const useAnimationState = (): AnimationState => {
     const animationSettings = createAnimationSettings(animationType, combinedState);
     const { html, css, js } = generateCode(animationSettings);
     
-    // Set code values
-    if (codeState && typeof codeState === 'object') {
-      (codeState as any).htmlCode = html;
-      (codeState as any).cssCode = css;
-      (codeState as any).jsCode = js;
-    }
+    console.log("Código gerado automaticamente:", { html, css, js });
     
-    console.log("Código gerado:", { html, css, js });
+    // Set code values using the setters
+    if (codeState.setHtmlCode) codeState.setHtmlCode(html);
+    if (codeState.setCssCode) codeState.setCssCode(css);
+    if (codeState.setJsCode) codeState.setJsCode(js);
   }, [
     animationType,
     // Gradient state
@@ -131,6 +156,7 @@ export const useAnimationState = (): AnimationState => {
     ...starsState,
     ...noiseState,
     ...colorTransitionState,
-    ...codeState
+    ...codeState,
+    generateAnimationCode // Adicionamos essa função para uso externo
   };
 };

@@ -10,9 +10,15 @@ interface CodeExportProps {
   htmlCode: string;
   cssCode: string;
   jsCode: string;
+  onGenerateCode?: () => void;
 }
 
-const CodeExport: React.FC<CodeExportProps> = ({ htmlCode, cssCode, jsCode }) => {
+const CodeExport: React.FC<CodeExportProps> = ({ 
+  htmlCode, 
+  cssCode, 
+  jsCode,
+  onGenerateCode 
+}) => {
   const [activeTab, setActiveTab] = useState('html');
   const [copied, setCopied] = useState(false);
   const [codeGenerated, setCodeGenerated] = useState(false);
@@ -48,12 +54,18 @@ const CodeExport: React.FC<CodeExportProps> = ({ htmlCode, cssCode, jsCode }) =>
   };
 
   const generateCode = () => {
+    if (onGenerateCode) {
+      onGenerateCode();
+    }
     setCodeGenerated(true);
     toast({
       title: "Código gerado!",
       description: "O código da animação foi gerado com sucesso.",
     });
   };
+
+  // Verificar se há código real antes de mostrar
+  const hasCode = Boolean(htmlCode || cssCode || jsCode);
 
   return (
     <div className="rounded-lg border border-border overflow-hidden bg-card">
@@ -74,7 +86,7 @@ const CodeExport: React.FC<CodeExportProps> = ({ htmlCode, cssCode, jsCode }) =>
             size="sm" 
             onClick={copyCode}
             className="flex items-center gap-1"
-            disabled={!codeGenerated}
+            disabled={!hasCode || !codeGenerated}
           >
             {copied ? (
               <>

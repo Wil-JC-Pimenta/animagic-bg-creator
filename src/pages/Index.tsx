@@ -164,6 +164,7 @@ const Index = () => {
             htmlCode={animationState.htmlCode}
             cssCode={animationState.cssCode}
             jsCode={animationState.jsCode}
+            onGenerateCode={animationState.generateAnimationCode}
           />
         </div>
       </div>

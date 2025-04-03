@@ -1,4 +1,3 @@
-
 export type AnimationType = 'gradient' | 'particles' | 'waves' | 'parallax' | 'network' | 'blobs' | 'glitch' | 'stars' | 'noise' | 'colorTransition';
 
 export interface GradientState {
@@ -75,6 +74,9 @@ export interface CodeState {
   htmlCode: string;
   cssCode: string;
   jsCode: string;
+  setHtmlCode?: (html: string) => void;
+  setCssCode?: (css: string) => void;
+  setJsCode?: (js: string) => void;
 }
 
 export interface AnimationState extends 
@@ -135,7 +137,6 @@ export interface AnimationState extends
   setColorTransitionBlendMode: (mode: string) => void;
 }
 
-// Interfaces for animation settings that are passed to the code generator
 export interface GradientSettings {
   colors: string[];
   duration: number;
