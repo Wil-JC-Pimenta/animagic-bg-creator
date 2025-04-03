@@ -1,6 +1,10 @@
 
 # Animagic - Criador de Backgrounds Animados
 
+##URL : 
+
+https://animagic-bg-creator.vercel.app/
+
 ## Descrição
 
 Animagic é uma aplicação web que permite aos usuários criar e personalizar backgrounds animados para seus projetos. Com uma interface amigável e uma variedade de opções de animação, o Animagic torna fácil a criação de fundos dinâmicos e visualmente impressionantes sem precisar escrever código.
@@ -115,7 +119,7 @@ npm run dev
 Em seguida, abra seu navegador e acesse `http://localhost:3000` para acessar o Animagic.
 
 ## Tecnologias Utilizadas
-
+ -Lovable
 - React
 - TypeScript
 - Tailwind CSS
