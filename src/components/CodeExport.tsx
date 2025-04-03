@@ -144,25 +144,27 @@ const CodeExport: React.FC<CodeExportProps> = ({ htmlCode, cssCode, jsCode }) =>
           
           <TabsContent value="html" className="p-0 m-0">
             <pre className="p-4 text-sm overflow-x-auto">
-              <code>{htmlCode}</code>
+              <code>{htmlCode || "// Código HTML será gerado aqui"}</code>
             </pre>
           </TabsContent>
           
           <TabsContent value="css" className="p-0 m-0">
             <pre className="p-4 text-sm overflow-x-auto">
-              <code>{cssCode}</code>
+              <code>{cssCode || "/* Código CSS será gerado aqui */"}</code>
             </pre>
           </TabsContent>
           
           <TabsContent value="js" className="p-0 m-0">
             <pre className="p-4 text-sm overflow-x-auto">
-              <code>{jsCode}</code>
+              <code>{jsCode || "// Código JavaScript será gerado aqui"}</code>
             </pre>
           </TabsContent>
           
           <TabsContent value="all" className="p-0 m-0">
             <pre className="p-4 text-sm overflow-x-auto">
-              <code>{`/* HTML */\n${htmlCode}\n\n/* CSS */\n${cssCode}\n\n/* JavaScript */\n${jsCode}`}</code>
+              <code>{htmlCode && cssCode && jsCode ? 
+                `/* HTML */\n${htmlCode}\n\n/* CSS */\n${cssCode}\n\n/* JavaScript */\n${jsCode}` : 
+                "// Todo o código será gerado aqui"}</code>
             </pre>
           </TabsContent>
         </Tabs>

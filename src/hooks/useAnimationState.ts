@@ -36,6 +36,8 @@ export const useAnimationState = (): AnimationState => {
   
   // Update code when animation settings change
   useEffect(() => {
+    console.log("Atualizando código para animação:", animationType);
+    
     // Combine all states into a single object to be used by createAnimationSettings
     const combinedState = {
       ...gradientState,
@@ -53,10 +55,14 @@ export const useAnimationState = (): AnimationState => {
     const animationSettings = createAnimationSettings(animationType, combinedState);
     const { html, css, js } = generateCode(animationSettings);
     
-    // We need to set these values manually since we're not exposing setters
-    (codeState as any).htmlCode = html;
-    (codeState as any).cssCode = css;
-    (codeState as any).jsCode = js;
+    // Set code values
+    if (codeState && typeof codeState === 'object') {
+      (codeState as any).htmlCode = html;
+      (codeState as any).cssCode = css;
+      (codeState as any).jsCode = js;
+    }
+    
+    console.log("Código gerado:", { html, css, js });
   }, [
     animationType,
     // Gradient state
